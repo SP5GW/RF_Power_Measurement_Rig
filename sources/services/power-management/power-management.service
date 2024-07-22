@@ -1,0 +1,12 @@
+[Unit]
+Description=Raspberry Halt/Wake-up Button and Status LED Handler
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/powermeter/services/power-management/power-management.py
+WorkingDirectory=/home/powermeter/services/power-management
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

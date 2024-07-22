@@ -1,0 +1,12 @@
+[Unit]
+Description=Handling TFT display module
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/powermeter/services/display-handler/display-handler.py
+WorkingDirectory=/home/powermeter/services/display-handler
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

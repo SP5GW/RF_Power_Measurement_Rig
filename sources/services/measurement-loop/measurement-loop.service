@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodic power measurement using AD8307 sensor
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/powermeter/services/measurement-loop/measurement-loop.py
+WorkingDirectory=/home/powermeter/services/measurement-loop
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
