@@ -1,0 +1,35 @@
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+#########################################################################
+#     RF Power Meter calibrated for HF Ham bands.                       #
+#                                                                       #
+#     Main HW components include:                                       #
+#         RF Power sensor:          AD8307                              #
+#					(pre-assembled unit from        # 
+#                                        Amazon.com - noname            #
+#         ADC Converter:            Ina219                              #   
+#                                       (Pi Hat - SBComponents)         #
+#         TFT Display:              ST7789VW                            #
+#                                       (Mini PiTFT 1,3'' 240x240px     #
+#                                        Adafruit 4484)                 #
+#         Halt/Wake-up Controller:  see project documentation           #
+#                                                                       #
+#     Control software has been broken into three systemd services      # 
+#     written in Python:                                                #
+#         power-management.service - controlling Pi halt/wake-up        #
+#                                    process                            #
+#         measurement-loop.service - measuring input power levels       #
+#         display-handler.service - controlling TFT display             #
+#                                                                       #
+#     For more details see: https://github.com/sp5gw/RF_Power_Meter     #
+#                                                                       #   
+#                          May - July 2024, Andrzej Mazur, SP5GW.       #
+#                                                                       #
+#########################################################################
+
+
