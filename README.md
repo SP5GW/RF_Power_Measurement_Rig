@@ -39,7 +39,12 @@ To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display H
 
 Display module is controlled by Pi Zero using SPI bus. PiTFT HAT is also equipped with two tact switches, which are used in this project as Up/Down band selectors.
 
-During power measurements antenna is replaced by dummy load based on inductance-less RFP-250 resistor manufactured by Anaren (or similar such as RFR 50-250). 
+During power measurements antenna is replaced by dummy load based on inductance-less RFP-250 resistor manufactured by Anaren (or similar such as RFR 50-250).
+To allow for sufficient heat disipation resistor has been enclosed in aluminium Hammond box (model: 1590LLB) attached to heat sink (see below).
+
+<p align="center">
+<img src="./img/Dummy_Load_Internals.jpg" width="300" height="300"/>
+</p> 
 
 
 ## Power Meter - Software Architecture
