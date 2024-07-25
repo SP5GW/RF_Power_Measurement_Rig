@@ -24,7 +24,7 @@ Since presented device is intended to be used to measure output power of the typ
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
 
 <p align="center">
-<img src="./img/Ina219_HAT_SBComponents.png" width="200" height="200"/>
+<img src="./img/Ina219_HAT_SBComponents.png" width="600" height="200"/>
 </p> 
 
 This particular HAT offers four 12-bit ADC channels, which can be handy if SWR measurements are considered in the future. Ina219 chips are controlled by Pi Zero using I2C data bus.
