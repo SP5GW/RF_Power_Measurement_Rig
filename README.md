@@ -19,7 +19,12 @@ Readily available AD8307 detector board purchased at Amazon is used for this pro
 <img src="./img/AD2307_board.jpg" width="200" height="200"/>
 </p>
 
-Since presented device is intended to be used to measure output power of the typical ham radio transceivers, the input signal level accepted by the power meter must be  extended to 100 Watts or 50 dBms. This is done by the use of -40dB RF Tap/Attenuator. 
+Since presented device is intended to be used to measure output power of the typical ham radio transceivers, the input signal level accepted by the power meter must be  extended to 100 Watts or 50 dBms. This is done by the use of -40dB RF Tap/Attenuator (see below). 
+
+<p align="center">
+<img src="./img/RF_Tap_Schematics.png" width="400" height="200"/>
+<img src="./img/RF_Tap_InternalsWithoutCap" width="400" height="200"/>
+</p> 
 
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
 
