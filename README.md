@@ -69,7 +69,12 @@ Key characteristics of presented dummy load are shown below:
 <img src="./img/Dummy_Load_Smith_Chart.png" width="400" height="300"/>
 </p> 
 
-AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (Ina219 ADC) and PiTFT HAT (Display and Band Selector Buttons) are enclosed into separate Hammond Box chassie and form a digital power meter, which is the central part of presented power measurement rig.
+AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (Ina219 ADC) and PiTFT HAT (Display and Band Selector Buttons) are enclosed into separate Hammond Box chassie and form a digital power meter, which is the central part of presented power measurement rig (see below).
+
+<p align="center">
+<img src="./img/Power_Meter_Internals.png" width="400" height="200"/>
+</p> 
+
 
 ## Power Meter - Software Architecture
 
@@ -134,12 +139,19 @@ Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of meas
 ## References
 
 [1] [Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST]
+
 [2] [A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST]
-[3] [Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at] (https://www.dl2mdu.de/rf-power-level-meter/) (english transcript) 
-[4] [Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI -] (https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/) (in Polish)
-[5] Obscurities & Applications of RF Power Detectors, Carlos Calvo, Analog Devices 2007
-[6] AD8307 Data Sheet, Analog Devices
-[7] Ina219 Zerø-Drift, Bi-Directional CURRENT/POWER MONITOR with I2C™ Interface, Texas Instruments
-[8] Power Monitor Hat Product Page, SB Components - https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat 
-[9] Mini PiTFT 1,3'' Display Product Page, Adafruit - https://www.adafruit.com/product/4484
-[10]
+
+[3] [Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at English transcript at] (<https://www.dl2mdu.de/rf-power-level-meter/>)
+
+[4] [Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI (in Polish) -] (<https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/>)
+
+[5] [Obscurities & Applications of RF Power Detectors, Carlos Calvo, Analog Devices 2007]
+
+[6] [AD8307 Data Sheet, Analog Devices]
+
+[7] [Ina219 Zerø-Drift, Bi-Directional CURRENT/POWER MONITOR with I2C™ Interface, Texas Instruments]
+
+[8] [Power Monitor Hat Product Page, SB Components -] (<https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat>)
+
+[9] [Mini PiTFT 1,3'' Display Product Page, Adafruit -] (<https://www.adafruit.com/product/4484>)
