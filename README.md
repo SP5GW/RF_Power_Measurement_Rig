@@ -10,10 +10,14 @@ AD83xx log amp transfer function describing relation between input power level i
 
 $Pinput [dBm] = a * Uout [V] + b$
 
-where a and b are respectively linear curve slope and intercept coeffiients [5]. 
+where $a$ and $b$ are respectively linear curve slope and intercept coeffiients [5]. 
  
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
-Readily available AD8307 detector board purchased at Amazon is used for this project.
+Readily available AD8307 detector board purchased at Amazon is used for this project:
+
+<p align="center">
+<img src="./img/AD2308_board.png" width="200" height="200"/>
+</p>
 
 Since presented device is intended to be used to measure output power of the typical ham radio transceivers, the input signal level accepted by the power meter must be  extended to 100 Watts or 50 dBms. This is done by the use of -40dB RF Tap/Attenuator. 
 
