@@ -8,9 +8,10 @@ The main objective of this article was to utilize capabilities provided by Raspb
 The core component of all power meters mentioned above is Analog Devices AD83xx logarithmic amplifier. which converts the power level of measured signal to a voltage.
 AD83xx log amp transfer function describing relation between input power level in dBms and coresponding output voltage in Volts is highly linear and can be expressed as 
 
-$Pinput [dBm] = a * Uout [V] + b$, 
+$Pinput [dBm] = a * Uout [V] + b$
 
-where a and b are respectively linear curve slope and intercept coeffiients [5].  
+where a and b are respectively linear curve slope and intercept coeffiients [5]. 
+ 
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
 Readily available AD8307 detector board purchased at Amazon is used for this project.
 
@@ -27,7 +28,13 @@ During power measurements antenna is replaced by dummy load based on inductance-
 
 ## Power Meter - Software Architecture
 
-Key building blocks of power meter software include following three systemd services written in python:
+Key building blocks of power meter software include three systemd services written in python. Interaction between those services, operating system and the user are depicted on the below flow diagram:
+
+<p align="center">
+<img src="./img/Power_Meter_UMLSeq_Diagram.png" width="600" height="800"/>
+</p>
+
+Brief description of each power meter service can be found below:
 
 ### Display Handler
 
@@ -67,10 +74,6 @@ This is critical functionality which ensures clean halt of Pi Zero platform prov
 Power Management service utilise the following Python mondules:
 RPi - GPIO support
 
-Interaction between services, operating system and the user are depicted on the below flow diagram:
-
-....
-
 ## Calibration Procedure
 
 ....
@@ -85,10 +88,10 @@ Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of meas
 
 ## References
 
-[1] Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST
-[2] A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST
-[3] Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at https://www.dl2mdu.de/rf-power-level-meter/ (english transcript) 
-[4] Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI - https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/ (in Polish)
+[1] [Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST]
+[2] [A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST]
+[3] [Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at] (https://www.dl2mdu.de/rf-power-level-meter/) (english transcript) 
+[4] [Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI -] (https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/) (in Polish)
 [5] Obscurities & Applications of RF Power Detectors, Carlos Calvo, Analog Devices 2007
 [6] AD8307 Data Sheet, Analog Devices
 [7] Ina219 Zerø-Drift, Bi-Directional CURRENT/POWER MONITOR with I2C™ Interface, Texas Instruments
