@@ -91,3 +91,10 @@ Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of meas
 [8] Power Monitor Hat Product Page, SB Components - https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat 
 [9] Mini PiTFT 1,3'' Display Product Page, Adafruit - https://www.adafruit.com/product/4484
 [10]
+
+
+
+wysokosc wykupu: 71721
+limit kilometrow: 25000x5=125000
+nr klienta: 9847938
+pwd: Ulasek1873!!

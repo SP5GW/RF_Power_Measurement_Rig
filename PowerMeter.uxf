@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>462</x>
+      <y>0</y>
+      <w>286</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:power-management.service</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>946</x>
+      <y>0</y>
+      <w>231</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:measurement-loop.service</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1331</x>
+      <y>0</y>
+      <w>231</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:display-handler.service</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>11</x>
+      <y>319</y>
+      <w>66</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>User
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>22</y>
+      <w>33</w>
+      <h>1936</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1740.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1034</x>
+      <y>22</y>
+      <w>33</w>
+      <h>1925</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1730.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1441</x>
+      <y>22</y>
+      <w>33</w>
+      <h>1925</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1730.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>418</y>
+      <w>33</w>
+      <h>1529</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1370.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>407</y>
+      <w>264</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+on/off Button Push
+(wake-up signal)</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>275</x>
+      <y>407</y>
+      <w>22</w>
+      <h>1529</h>
+    </coordinates>
+    <panel_attributes>
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>1210</y>
+      <w>539</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+on/off Button Push
+(duration &gt;3sec)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>286</x>
+      <y>429</y>
+      <w>264</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Display Backlight = On</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>187</x>
+      <y>0</y>
+      <w>198</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:System
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>275</x>
+      <y>22</y>
+      <w>33</w>
+      <h>1936</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1740.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1045</x>
+      <y>935</y>
+      <w>418</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Measurement Result
+(~/services/measurement-loop/powermeas.value)</panel_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1045</x>
+      <y>1089</y>
+      <w>418</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Measurement Result
+(~/services/measurement-loop/powermeas.value))</panel_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1045</x>
+      <y>1166</y>
+      <w>418</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Measurement Result
+(~/services/measurement-loop/powermeas.value))</panel_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1045</x>
+      <y>1034</y>
+      <w>418</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+bandSelectorButton Pushed (Up/Down)
+(~/services/display-handler/bandselector.value)</panel_attributes>
+    <additional_attributes>10.0;20.0;360.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>550</x>
+      <y>429</y>
+      <w>22</w>
+      <h>1507</h>
+    </coordinates>
+    <panel_attributes>
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>891</y>
+      <w>539</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+on/off Button Push
+(duration &lt;3sec)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>1122</y>
+      <w>539</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+on/off Button Push
+(duration &lt;3sec)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>286</x>
+      <y>1562</y>
+      <w>286</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Halt</panel_attributes>
+    <additional_attributes>10.0;20.0;240.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>33</x>
+      <y>990</y>
+      <w>1430</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+bandSelectorButton Pushed (Up/Down)</panel_attributes>
+    <additional_attributes>1280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>1364</y>
+      <w>649</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>*System configuration when Pi is changing state from active*
+*to halted*
+GPIO 4: level=1 func=OUTPUT (Frontpanel System Activity LED
+follows CPU activity):
+     /boot/config.txt:
+        dtparam=act_led_trigger=cpu0
+valign=center
+halign=left
+fontsize=18
+lw=2.5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>44</x>
+      <y>44</y>
+      <w>583</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>*System configuration when Pi is halted:*
+*cli command: raspi-gpio get*
+GPIO 4: level=1 func=OUTPUT (Frontpanel System Activity LED
+follows CPU activity):
+     /boot/config.txt:
+        dtparam=act_led_gpio=4
+        dtparam=act_led_activelow=off
+        dtparam=act_led_trigger=cpu0
+GPIO 22: level=1 func=OUTPUT (Display Backlight is off)
+GPIO 26: level=1 func=OUTPUT (GPIO3 connected to 
+frontpanel on/off button and sensing for "wake-up")
+GPIO5 state irrelevant.
+valign=center
+halign=left
+fontsize=18
+lw=2.5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1034</x>
+      <y>451</y>
+      <w>22</w>
+      <h>1474</h>
+    </coordinates>
+    <panel_attributes>
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1441</x>
+      <y>440</y>
+      <w>22</w>
+      <h>1485</h>
+    </coordinates>
+    <panel_attributes>
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>1771</y>
+      <w>583</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>*Back to system configuration when Pi is halted:*
+*cli command: raspi-gpio get*
+GPIO 22: level=1 func=OUTPUT (Display Backlight is off)
+GPIO 26: level=1 func=OUTPUT (GPIO3 is connected to 
+frontpanel on/off button and sensing for "wake-up")
+GPIO5 state irrelevant.
+valign=center
+halign=left
+fontsize=18
+lw=2.5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>550</x>
+      <y>1936</y>
+      <w>22</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>type=termination</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>616</y>
+      <w>627</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>*System configuration when Pi is active:*
+*cli command: raspi-gpio get*
+GPIO 4: level=1 func=OUTPUT (Frontpanel System Activity LED
+set to on - to disable periodic flashing when 
+measurement loop is running):
+     /boot/config.txt:
+        dtparam=act_led_trigger=default-on
+GPIO 22: level=0 func=OUTPUT (Display Backlight is on)
+GPIO 26: level=0 func=OUTPUT (GPIO3 is used as I2C SCL1, 
++7.5V regulator enabled)
+GPIO5: func=INPUT is sensing for halt signal
+valign=center
+halign=left
+fontsize=18
+lw=2.5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>275</x>
+      <y>1936</y>
+      <w>22</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>type=termination</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1034</x>
+      <y>1925</y>
+      <w>22</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>type=termination</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1441</x>
+      <y>1925</y>
+      <w>22</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>type=termination</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>561</x>
+      <y>1254</y>
+      <w>231</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Activity LED = On</panel_attributes>
+    <additional_attributes>10.0;70.0;70.0;70.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>286</x>
+      <y>1606</y>
+      <w>275</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Display Backlight = Off
+
+GPIO3 is connected
+to on/off Button</panel_attributes>
+    <additional_attributes>10.0;100.0;70.0;100.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>561</x>
+      <y>484</y>
+      <w>275</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Activity LED = On
+
+GPIO3 is disconnected 
+from on/off Button
+and is used as I2C SCL1 </panel_attributes>
+    <additional_attributes>10.0;90.0;70.0;90.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
