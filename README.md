@@ -6,7 +6,7 @@
 The main objective of this article was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
 
 The core component of all power meters mentioned above is Analog Devices AD83xx logarithmic amplifier. which converts the power level of measured signal to a voltage.
-AD83xx log amp transfer function describing relation between input power level in dBms and coresponding output voltage in Volts is highly linear and can be expressed as Pinput [dBm] = a * Uout [V] + b, where a and b are respectively linear curve slope and intercept coeffiients [5].  
+AD83xx log amp transfer function describing relation between input power level in dBms and coresponding output voltage in Volts is highly linear and can be expressed as $Pinput [dBm] = a * Uout [V] + b$, where a and b are respectively linear curve slope and intercept coeffiients [5].  
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
 Readily available AD8307 detector board purchased at Amazon is used for this project.
 
@@ -21,11 +21,11 @@ To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display H
 During power measurements antenna is replaced by dummy load based on inductance-less RFP-250 resistor manufactured by Anaren (or similar such as RFR 50-250). 
 
 
-##Power Meter - Software Architecture
+## Power Meter - Software Architecture
 
 Key building blocks of power meter software include following three systemd services written in python:
 
-###Display Handler
+### Display Handler
 
 Display Handler service (display-handler.service/display-handler.py) provides power meter graphical interface and implements band selector function.
 
@@ -38,7 +38,7 @@ adafruit_rgb_display - support for ST7780 TFT display controller
 
 Display Handler also uses Python Imaging Library (PIL) to implement graphical operations such as font handling and drawing. 
 
-###Measurement Loop
+### Measurement Loop
 
 Measurement loop service (measurement-loop.service/measurement-loop.py) continously measure the input power level in dBm and Watts.
 
@@ -48,7 +48,7 @@ Measurement loop service utilizes the following Circuit Python modules:
 board - I2C bus support
 adafruit_ina219 - ina219 ADC support
 
-###Power Management 
+### Power Management 
 
 Power Management service (power-management.service/power-management.py) controls status LED and ensures clean halt/power-off of Pi Zero platform.
 
@@ -67,19 +67,19 @@ Interaction between services, operating system and the user are depicted on the 
 
 ....
 
-##Calibration Procedure
+## Calibration Procedure
 
 ....
 
 Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of measured power and frequencies covering all HF ham bands.
 
-##Measurement Setup
+## Measurement Setup
 
 
 
 
 
-##References
+## References
 
 [1] Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST
 [2] A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST
