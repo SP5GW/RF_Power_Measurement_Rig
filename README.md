@@ -93,9 +93,10 @@ Display Handler service (display-handler.service/display-handler.py) provides po
 Band selector function is based on two tact switches available on PiTFT display HAT. Display handler continously reads power data from the powermeas.value text file stored in measurement loop service directory and displays it on TFT screen. It also continously checks if one of the up/down tact switches have been pressed and based on this information calculates currently selected measurement band. Latest selected band information is stored in bandselector.value text file located in display handler service directory.
 
 Display Handler service utilizes the following Circuit Python modules:
-board - SPI bus support
-digitalio - tact switches status handling (including switch debouncing function)
-adafruit_rgb_display - support for ST7780 TFT display controller
+
+* board - SPI bus support
+* digitalio - tact switches status handling (including switch debouncing function)
+* adafruit_rgb_display - support for ST7780 TFT display controller
 
 Display Handler also uses Python Imaging Library (PIL) to implement graphical operations such as font handling and drawing. 
 
@@ -106,8 +107,9 @@ Measurement loop service (measurement-loop.service/measurement-loop.py) continou
 Measurement loop service (measurement-loop.service/measurement-loop.py) continously reads AD8307 output voltage over I2C interface of Ina219 12-bit ADC. It also continously reads selected measurement band stored in file bandselector.value located in display handler service directory. Based on selected band the appropriate voltage to power conversion function is used to calculate power value in dBm, which coresponds to measured output voltage of AD8307. Additionally power level in dBm is converted to its equivalent in Watts. Both power values are stored in powermeas.value text file located in measurement loop service directory.
 
 Measurement loop service utilizes the following Circuit Python modules:
-board - I2C bus support
-adafruit_ina219 - ina219 ADC support
+
+* board - I2C bus support
+* adafruit_ina219 - ina219 ADC support
 
 ### Power Management 
 
@@ -122,7 +124,8 @@ When Pi Zero is in sleep mode GPIO26 state is high, which connects GPIO3 to on/o
 This is critical functionality which ensures clean halt of Pi Zero platform providing protection against SSD data card corruption, which is likely to occur when Pi is shut down in uncotrolled manner. It also prevents measurement results from being corrupted by on/off button presses, which could cause data flow interuption on I2C bus.
 
 Power Management service utilise the following Python mondules:
-RPi - GPIO support
+
+* RPi - GPIO support
 
 ## Calibration Procedure
 
@@ -138,20 +141,20 @@ Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of meas
 
 ## References
 
-[1] [Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST]
+[1] Simple RF-Power Measurement, Wes Hayward, W7ZOI, Bob Larkin, W7PUA - June 2001 QST
 
-[2] [A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST]
+[2] A PIC-based HF/VHF Power Meter, Roger Hayward, KA7EXM - May/June 2005 QEX and the June 2005 QST
 
-[3] [Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at English transcript at] (<https://www.dl2mdu.de/rf-power-level-meter/>)
+[3] Digital Power Meter, Reinhardt Weber, DC5ZM - FUNKAMATEUR (1/2018 page. 38) (in German) or at English transcript at https://www.dl2mdu.de/rf-power-level-meter/
 
-[4] [Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI (in Polish) -] (<https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/>)
+[4] Miernik Poziomu Sygnału RF z AD8318, Mirek Sadowski, SP5GNI (in Polish) - https://hf5l.pl/miernik-poziomu-sygnalu-z-ad8318/
 
-[5] [Obscurities & Applications of RF Power Detectors, Carlos Calvo, Analog Devices 2007]
+[5] Obscurities & Applications of RF Power Detectors, Carlos Calvo, Analog Devices 2007
 
-[6] [AD8307 Data Sheet, Analog Devices]
+[6] AD8307 Data Sheet, Analog Devices
 
-[7] [Ina219 Zerø-Drift, Bi-Directional CURRENT/POWER MONITOR with I2C™ Interface, Texas Instruments]
+[7] Ina219 Zerø-Drift, Bi-Directional CURRENT/POWER MONITOR with I2C™ Interface, Texas Instruments
 
-[8] [Power Monitor Hat Product Page, SB Components -] (<https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat>)
+[8] Power Monitor Hat Product Page, SB Components - https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat
 
-[9] [Mini PiTFT 1,3'' Display Product Page, Adafruit -] (<https://www.adafruit.com/product/4484>)
+[9] Mini PiTFT 1,3'' Display Product Page, Adafruit - https://www.adafruit.com/product/4484>
