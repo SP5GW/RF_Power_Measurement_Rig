@@ -13,19 +13,31 @@ $Pinput [dBm] = a * Uout [V] + b$
 where $a$ and $b$ are respectively linear curve slope and intercept coeffiients [5]. 
  
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
-Readily available AD8307 detector board purchased at Amazon is used for this project:
+Readily available AD8307 detector board purchased at Amazon is used for this project (see below)
 
 <p align="center">
-<img src="./img/AD2308_board.png" width="200" height="200"/>
+<img src="./img/AD2307_board.jpg" width="200" height="200"/>
 </p>
 
 Since presented device is intended to be used to measure output power of the typical ham radio transceivers, the input signal level accepted by the power meter must be  extended to 100 Watts or 50 dBms. This is done by the use of -40dB RF Tap/Attenuator. 
 
-Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal. This particular HAT offers four 12-bit ADC channels, which can be handy if SWR measurements are considered in the future. Ina219 chips are controlled by Pi Zero using I2C data bus.
+Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
+
+<p align="center">
+<img src="./img/Ina219_HAT_SBComponents.png" width="200" height="200"/>
+</p> 
+
+This particular HAT offers four 12-bit ADC channels, which can be handy if SWR measurements are considered in the future. Ina219 chips are controlled by Pi Zero using I2C data bus.
 
 AD83xx output voltage level, decreases with the frequency of measured signal even though input signal power level is kept constant. This effect can be compensated with simple two point calibration procedure [5] performed separately for each ham band. Calculated coeficient pairs are then incorporated into Python measurement script executing on Pi Zero. Band selection is made by use of up/down buttons on meters front pannel.
 
-To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display HAT [9] from AdaFruit is used. Display module is controlled by Pi Zero using SPI bus. PiTFT HAT is also equipped with two tact switches, which are used in this project as Up/Down band selectors.
+To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display HAT [9] from AdaFruit is used (see below). 
+
+<p align="center">
+<img src="./img/TFTi_Display.png" width="200" height="200"/>
+</p> 
+
+Display module is controlled by Pi Zero using SPI bus. PiTFT HAT is also equipped with two tact switches, which are used in this project as Up/Down band selectors.
 
 During power measurements antenna is replaced by dummy load based on inductance-less RFP-250 resistor manufactured by Anaren (or similar such as RFR 50-250). 
 
