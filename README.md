@@ -26,6 +26,17 @@ Since presented device is intended to be used to measure output power of the typ
 <img src="./img/RF_Tap_InternalsWithoutCap.jpg" width="400" height="300"/>
 </p> 
 
+Resistors R1a, R1b and R1c shall be 500mW rated. R2 can be 125mW rated. Please note that if you do not terminate RF path with 50ohm dummy load or antenna, power (Prms) dissipated on one of R1 resistors goes up to 1.3W!
+
+To minimize attenuation increase for frequencies aboth 144MHz capacitor made of wire connected parallel to R1a shall be added.  
+
+RF Tap VSWR and Attenuation curves are shown below:
+
+<p align="center">
+<img src="./img/RF_Tap_VSWR_RF_Input_RF_Tap_withCap_50ohmTerm.png" width="400" height="200"/>
+<img src="./img/RF_Tap_S21_RF_Input_withCap_50ohmTerm.png" width="400" height="300"/>
+</p> 
+
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
 
 <p align="center">
@@ -50,6 +61,9 @@ To allow for sufficient heat disipation resistor has been enclosed in aluminium 
 <p align="center">
 <img src="./img/Dummy_Load_Internals.jpg" width="300" height="300"/>
 </p> 
+
+
+
 
 
 ## Power Meter - Software Architecture
