@@ -23,7 +23,7 @@ Since presented device is intended to be used to measure output power of the typ
 
 <p align="center">
 <img src="./img/RF_Tap_Schematics.png" width="400" height="200"/>
-<img src="./img/RF_Tap_InternalsWithoutCap.jpg" width="400" height="200"/>
+<img src="./img/RF_Tap_InternalsWithoutCap.jpg" width="400" height="300"/>
 </p> 
 
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
