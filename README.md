@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The main objective of this article was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
+The main objective of this project was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
 
 The core component of all power meters mentioned above is Analog Devices AD83xx logarithmic amplifier. which converts the power level of measured signal to a voltage.
 AD83xx log amp transfer function describing relation between input power level in dBms and coresponding output voltage in Volts is highly linear and can be expressed as 
@@ -69,6 +69,7 @@ Key characteristics of presented dummy load are shown below:
 <img src="./img/Dummy_Load_Smith_Chart.png" width="400" height="300"/>
 </p> 
 
+AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (Ina219 ADC) and PiTFT HAT (Display and Band Selector Buttons) are enclosed into separate Hammond Box chassie and form a digital power meter, which is the central part of presented power measurement rig.
 
 ## Power Meter - Software Architecture
 
