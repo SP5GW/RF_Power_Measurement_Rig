@@ -62,8 +62,12 @@ To allow for sufficient heat disipation resistor has been enclosed in aluminium 
 <img src="./img/Dummy_Load_Internals.jpg" width="300" height="300"/>
 </p> 
 
+Key characteristics of presented dummy load are shown below:
 
-
+<p align="center">
+<img src="./img/Dummy_Load_SWR.png" width="400" height="200"/>
+<img src="./img/Dummy_Load_Smith_Chart.png" width="400" height="300"/>
+</p> 
 
 
 ## Power Meter - Software Architecture
