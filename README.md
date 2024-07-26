@@ -129,9 +129,38 @@ Power Management service utilise the following Python mondules:
 
 ## Calibration Procedure
 
-....
+In order to get accurate results, the measurement setup has to be calibrated. Two and four point calibration methods have been experimented with and two point calibration has been ultimately selected as more accurate within 0-100W nominal working range [5]. Calibration procedure has been run for complete measurement setup including power meter, attenuator, dummy load and cabling. Since power reading depends on frequency range calibration procedure had to be repeated for each band.
 
 Calibrated system provides +/- 2 Watt accuracy within 0 - 100 Watt range of measured power and frequencies covering all HF ham bands.
+
+Before the start of calibration process measurement-loop service shall be disabled from the power meter cli:
+
+	systemctl stop measurement-loop.service
+
+and instead, measurement-loop.py script shall be run:
+
+	python ~/services/measuremenet-loop/measurement-loop.py
+
+measurement-loop.py script prints voltage level, which corresponds to measured power.
+
+As a source of reference signal Yaesu FT-710 transceiver in CW mode has been used.  
+
+Calibration procedure consisting the following steps:
+
+	STEP1: Set transceiver output power to minimum value of 5W and record corresponding voltage reading
+	STEP2: Set transceiver output power to maximum value of 100W and record corresponding voltage reading
+			Avoid taking full power measurement for more then 10-15 seconds.
+	STEP3: Convert reference power levels to dBm's
+	STEP4: In Excel or similar tool run regression analysis to find a and b parameters of linear curve:
+
+			U(P[dBm])[V] = a*P[dBm] + b
+
+	STEP5: Convert the curve to the format, which can be applied to measurement-loop.py service and update the script accordingly:
+
+			P[dBm] = ( U[V] - b ) / a
+
+	STEP6: Repeated for each band
+
 
 ## Measurement Setup
 
