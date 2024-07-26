@@ -15,6 +15,10 @@ AD83xx log amp transfer function describing relation between input power level i
 $Pinput [dBm] = a * Uout [V] + b$
 
 where $a$ and $b$ are respectively linear curve slope and intercept coeffiients [5]. 
+
+<p align="center">
+<img src="./img/Transfer_Function.png" width="200" height="200"/>
+</p>
  
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
 Readily available AD8307 detector board purchased at Amazon is used for this project (see below)
