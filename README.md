@@ -154,7 +154,7 @@ Calibration procedure consisting the following steps:
 
 $U(P[dBm])[V] = a*P[dBm] + b$
 
-Example of linear curve fitting for 17m band using Excel:
+Example of linear curve fitting for 17m band using Excel ($a = 0,024$ , $b = 1,129$):
 
 <p align="center">
 <img src="./img/Calibration_Curve_Fitting.png" width="400" height="400"/>
