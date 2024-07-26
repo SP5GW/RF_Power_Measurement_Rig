@@ -72,7 +72,7 @@ Key characteristics of presented dummy load are shown below:
 AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (Ina219 ADC) and PiTFT HAT (Display and Band Selector Buttons) are enclosed into separate Hammond Box chassie and form a digital power meter, which is the central part of presented power measurement rig (see below).
 
 <p align="center">
-<img src="./img/Power_Meter_Internals.jpg" width="400" height="200"/>
+<img src="./img/Power_Meter_Internals.jpg" width="400" height="300"/>
 <img src="./img/Power_Meter_Display_Mounting.jpg" width="400" height="200"/>
 </p> 
 
