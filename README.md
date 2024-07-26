@@ -23,12 +23,12 @@ Since presented device is intended to be used to measure output power of the typ
 
 <p align="center">
 <img src="./img/RF_Tap_Schematics.png" width="400" height="200"/>
-<img src="./img/RF_Tap_InternalsWithoutCap.jpg" width="400" height="300"/>
+<img src="./img/RF_Tap_InternalsWithCap.jpg" width="400" height="300"/>
 </p> 
 
 Resistors R1a, R1b and R1c shall be 500mW rated. R2 can be 125mW rated. Please note that if you do not terminate RF path with 50ohm dummy load or antenna, power (Prms) dissipated on one of R1 resistors goes up to 1.3W!
 
-To minimize attenuation increase for frequencies aboth 144MHz capacitor made of wire connected parallel to R1a shall be added.  
+To minimize attenuation increase for frequencies above 144MHz the capacitor made of wire connected parallel to R1a shall be added (orange wire on the picture above - not shown on the circuit diagram).  
 
 RF Tap VSWR and Attenuation curves are shown below:
 
