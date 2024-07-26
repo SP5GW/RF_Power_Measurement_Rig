@@ -152,11 +152,11 @@ Calibration procedure consisting the following steps:
 3. Convert reference power levels to dBm's
 4. In Excel or similar tool run regression analysis to find $a$ and $b$ parameters of linear curve:
 
-			$U(P[dBm])[V] = a*P[dBm] + b$
+$U(P[dBm])[V] = a*P[dBm] + b$
 
 5. Convert the curve to the format, which can be applied to measurement-loop.py service and update the script accordingly:
 
-			$P[dBm] = ( U[V] - b ) / a$
+$P[dBm] = ( U[V] - b ) / a$
 
 6. Repeated for each band
 
