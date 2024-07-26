@@ -17,7 +17,7 @@ $Pinput [dBm] = a * Uout [V] + b$
 where $a$ and $b$ are respectively linear curve slope and intercept coeffiients [5]. 
 
 <p align="center">
-<img src="./img/Transfer_Function.png" width="200" height="200"/>
+<img src="./img/Transfer_Function.png" width="500" height="500"/>
 </p>
  
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
