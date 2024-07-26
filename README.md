@@ -157,14 +157,14 @@ $U(P[dBm])[V] = a*P[dBm] + b$
 Example of linear curve fitting for 17m band using Excel:
 
 <p align="center">
-<img src="./img/Calibration_Curve_Fitting.png" width="400" height="200"/>
+<img src="./img/Calibration_Curve_Fitting.png" width="400" height="400"/>
 </p> 
 
 5. Convert the curve to the format, which can be applied to measurement-loop.py service and update the script accordingly:
 
 $P[dBm] = ( U[V] - b ) / a$
 
-6. Repeated for each band
+6. Repeat for each band
 
 
 ## Measurement Setup
