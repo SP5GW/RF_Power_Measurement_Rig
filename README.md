@@ -147,19 +147,18 @@ As a source of reference signal Yaesu FT-710 transceiver in CW mode has been use
 
 Calibration procedure consisting the following steps:
 
-	STEP1: Set transceiver output power to minimum value of 5W and record corresponding voltage reading
-	STEP2: Set transceiver output power to maximum value of 100W and record corresponding voltage reading
-			Avoid taking full power measurement for more then 10-15 seconds.
-	STEP3: Convert reference power levels to dBm's
-	STEP4: In Excel or similar tool run regression analysis to find a and b parameters of linear curve:
+1. Set transceiver output power to minimum value of 5W and record corresponding voltage reading
+2. Set transceiver output power to maximum value of 100W and record corresponding voltage reading. Avoid taking full power measurement for more then 10-15 seconds.
+3. Convert reference power levels to dBm's
+4. In Excel or similar tool run regression analysis to find $a$ and $b$ parameters of linear curve:
 
-			U(P[dBm])[V] = a*P[dBm] + b
+			$U(P[dBm])[V] = a*P[dBm] + b$
 
-	STEP5: Convert the curve to the format, which can be applied to measurement-loop.py service and update the script accordingly:
+5. Convert the curve to the format, which can be applied to measurement-loop.py service and update the script accordingly:
 
-			P[dBm] = ( U[V] - b ) / a
+			$P[dBm] = ( U[V] - b ) / a$
 
-	STEP6: Repeated for each band
+6. Repeated for each band
 
 
 ## Measurement Setup
