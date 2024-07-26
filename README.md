@@ -1,6 +1,10 @@
 
 # RF Power Measurement Rig 
 
+<p align="center">
+<img src="./img/Power_Measurement_Rig.jpg" width="600" height="400"/>
+</p> 
+
 ## Introduction
 
 The main objective of this project was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
