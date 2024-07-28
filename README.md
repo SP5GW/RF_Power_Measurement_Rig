@@ -81,7 +81,7 @@ AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (
 
 <p align="center">
 <img src="./img/Power_Meter_Internals.jpg" width="400" height="300"/>
-<img src="./img/Power_Meter_Display_Mounting.jpg" width="400" height="200"/>
+<img src="./img/Power_Meter_Display_Mounting.jpg" width="400" height="300"/>
 </p> 
 
 Schematics of the full setup can be found below:
@@ -183,7 +183,13 @@ $P[dBm] = ( U[V] - b ) / a$
 
 ## Measurement Setup
 
+The operation of the setup is very easy assuming the rig has been already calibrated. In such scenario it is enough to connect transceiver output to the input of the RF tap marked with red arrow on the picture below. For obtaining most accurate results, the relevant frequency band shall be selected using UP/DOWN keys next to the TFT display.
 
+<p align="center">
+<img src="./img/Power_Measurement_Rig_Use.jpg" width="400" height="400"/>
+</p> 
+
+For the novice user it might be surprising that when transceiver is in LSB/USB mode and PTT button is pressed, there is practically no signal present at the output of the transceiver unless one starts speaking or better whistling. To obtain results, which can be interpreted the transceiver shall be set into CW mode. As soon as the straight key is pressed the power of clean carrier sine wave dispating on dummy laod can be measured. 
 
 
 
