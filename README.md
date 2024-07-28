@@ -84,6 +84,11 @@ AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (
 <img src="./img/Power_Meter_Display_Mounting.jpg" width="400" height="200"/>
 </p> 
 
+Schematics of the full setup can be found below:
+
+<p align="center">
+<img src="./img/RigSchematics.jpg" width="500" height="500"/>
+</p>
 
 ## Power Meter - Software Architecture
 
