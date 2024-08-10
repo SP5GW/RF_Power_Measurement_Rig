@@ -1,0 +1,74 @@
+# For more options and information see
+# http://rptl.io/configtxt
+# Some settings may impact device functionality. See link above for details
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+dtparam=i2c_arm=on
+#dtparam=i2s=on
+dtparam=spi=on
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+# Additional overlays and parameters are documented
+# /boot/firmware/overlays/README
+
+# Automatically load overlays for detected cameras
+# commented by sp5gw
+# camera_auto_detect=1
+
+# Automatically load overlays for detected DSI displays
+# commented by sp5gw
+# display_auto_detect=1
+
+# Automatically load initramfs files, if found
+auto_initramfs=1
+
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead.
+disable_fw_kms_setup=1
+
+# Disable compensation for displays with overscan
+disable_overscan=0
+
+# Run as fast as firmware / board allows
+arm_boost=1
+
+[cm4]
+# Enable host mode on the 2711 built-in XHCI USB controller.
+# This line should be removed if the legacy DWC2 controller is required
+# (e.g. for USB device mode) or if USB support is not required.
+# commented by sp5gw
+# otg_mode=1
+
+[all]
+
+#Allow ssh over usb
+dtoverlay=dwc2
+
+# Enable UART1 so GPIO14 can be used as LED status indicator for Pi
+enable_uart=1
+
+# Map ACT LED to GPIO4
+dtparam=act_led_gpio=4
+# Invert ACT LED, on,off
+dtparam=act_led_activelow=off
+# Change ACT LED trigger
+# heartbeat, mmc0, cpu0, timer, gpio
+dtparam=act_led_trigger=cpu0 
+
+# --- added by adafruit-pitft-helper Sat Jun  1 21:31:30 2024 ---
+[all]
+#hdmi_force_hotplug=0
+#dtparam=spi=on
+#dtparam=i2c1=on
+#dtparam=i2c_arm=on
+#dtoverlay=mipi-dbi-spi,spi0-0,speed=40000000
+#dtparam=compatible=adafruit_st7789_drm\0panel-mipi-dbi-spi
+#dtparam=width=240,height=240,y-offset=80
+#dtparam=dc-gpio=25,backlight-gpio=22
+# --- end adafruit-pitft-helper Sat Jun  1 21:31:30 2024 ---
