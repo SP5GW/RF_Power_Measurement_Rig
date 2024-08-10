@@ -10,8 +10,8 @@ permitted by applicable law.
 #                                                                       #
 #     Main HW components include:                                       #
 #         RF Power sensor:          AD8307                              #
-#					(pre-assembled unit from                            # 
-#                                        Amazon.com - noname)           #
+#					(pre-assembled unit from        # 
+#                                        Amazon.com - noname            #
 #         ADC Converter:            Ina219                              #   
 #                                       (Pi Hat - SBComponents)         #
 #         TFT Display:              ST7789VW                            #
@@ -28,7 +28,7 @@ permitted by applicable law.
 #                                                                       #
 #     For more details see: https://github.com/sp5gw/RF_Power_Meter     #
 #                                                                       #   
-#                               May - July 2024, Andrzej Mazur, SP5GW.  #
+#                          May - July 2024, Andrzej Mazur, SP5GW.       #
 #                                                                       #
 #########################################################################
 
