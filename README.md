@@ -20,9 +20,9 @@ where $a$ and $b$ are respectively linear curve slope and intercept coeffiients 
 <img src="./img/Transfer_Function.png" width="500" height="500"/>
 </p>
  
-## Solution Architecture - key hardware modules
+## Solution Architecture - Key Hardware Modules
 
-### Power sensor module based on AD8307 amplifier
+### Power Sensor Module Based On AD8307 Amplifier
 
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
 Readily available AD8307 detector board purchased at Amazon is used for this project (see below)
@@ -51,7 +51,7 @@ RF Tap VSWR and Attenuation curves are shown below:
 <img src="./img/RF_Tap_S21_RF_Input_withCap_50ohmTerm.png" width="400" height="300"/>
 </p> 
 
-### ADC Module based on Ina219
+### ADC Module Based On Ina219
 
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
 
@@ -154,6 +154,28 @@ This is critical functionality which ensures clean halt of Pi Zero platform prov
 Power Management service utilise the following Python mondules:
 
 * RPi - GPIO support
+
+## Power Meter - Software Configuration
+
+A detailed description of the power meter software configuration can be found in [11] – plikpowermeter_pi_config.txt. A brief description of this procedure is presented below.
+
+A 32-bit version of Debian Bookworm was used as the base system image. Basic configuration changes such as user account definition (powermeter) and wifi configuration were made from the Raspberry Pi Imager tool.
+
+Before the first boot of the system, the ssh and ssh via USB were enabled and the default behavior of the LED indicating the device status was changed. This part of the configuration was done by directly modifying the /boot/firmware/config.txt and /boot/firmware/cmdline.txt files and creating an empty /boot/firmware/ssh file.
+
+The next step was to install the power management service. To do this, copy the source code of the service (file: power-management.py) available in this repository [12] within ~/sources/services/power-management directory to the /home/powermeter/services/power-management directory on the Raspberry Pi platform, and the service configuration file (file: power-management.service) to the /lib/systemd/system/ directory. 
+Then, using the systemctl commands, activate the power management service and verify its correct operation (systemctl options: start, enable and status).
+
+In the same manner measurement loop and display services shall be installed, but in these cases we need to install the necessary hardware drivers and activate i2c and spi buses before services are started.
+
+To communicate with the Ina219 ADC chip, the Adafruit driver (adafruit-circuitpython-ina219) is used.
+
+To communicate with the TFT  ST7789 controller, the Adafruit driver (adafruit-circuitpython-rgb-display) is used. To operate correctly it requires the installation of raspi-blinka libraries. Dejavu fonts and python libraries: PIL and Numpy have also been added to the system.
+
+Basic information about the power meter has been placed in the /etc/motd file, the content of which is displayed automatically after logging in to the power meter platform with the ssh command.
+
+The power meter software also has the ability to log basic information about its status using the journal system service.
+
 
 ## Calibration Procedure
 
