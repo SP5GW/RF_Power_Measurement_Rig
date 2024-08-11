@@ -1,4 +1,4 @@
-INITIAL CONFIG
+>>>INITIAL CONFIG<<<
 
 base image: Raspberry Pi OS (32-bit), A port of Debian Bookworm with Raspberry Pi Desktop, issued: 2024-03-15
 
@@ -13,16 +13,15 @@ PWD: Ulasek 2030
 
 three files to be modified/created before first pi boot to enable ssh access via usb:
 
-1) ./boot/config.txt
+1) /boot/firmware/config.txt
 	add the following text as the last line of the file: dtoverlay=dwc2
-2) ./boot/cmdline.txt
+2) /boot/firmware/cmdline.txt
 	add this as a parameter, just after last word in the string (start with space): modules-load=dwc2,g_ether
-3) ./boot/ssh
+3) ./boot/firmware/ssh
 	create empty file named ssh
 	
 	
-	
-Wait good few minutes before testing connectivity, now it shall be possible to login to your pi:
+Wait a good few minutes before testing connectivity, now it shall be possible to login to your pi:
 
 ssh powermeter@powermeter.local
 password: power
@@ -34,97 +33,162 @@ commands to obtain pinout info
 	pinctrl
 
 
-ADDING POWER BUTTON AND STATUS LED
+>>>CONFIGURING POWER BUTTON/STATUS LED<<<
 
-Configure UART by adding:
+Led indicator initially has been connected to TX of UART (GPIO14), but results were not satisfactory...
+This approach requires the following line to be added to /boot/firmware/config.txt:
+
 enable_uart=1 
-in [all] section of /boot/config.txt file
 
-This will allow the TX signal (GPIO14) to control stus LED
+The final solution was to map ACT_LED to GPIO14. Inverting ACT_LED logic and changing its trigger to cpu0
+This is done by inserting the following lines to /boot/firmware/config.txt file:
 
-Test if your system supports wake-up from halt
+dtparam=act_led_gpio=4
+dtparam=act_led_activelow=off
+dtparam=act_led_trigger=cpu0
+
+Remember, that act_led_trigger is changed programmatically by power-management service as soon as Pi 
+platform is woken-up (act_led mode is changed to continues on).
+
+
+This is a formality, but you can test if your system supports wake-up from halt
 
 	halt pi with command: sudo shutdown -h now
 	then briefly short pins 5 and 6 (GPIO3 and GND), this shall wake up pi
 
-go to /home/powermeter/services/power-management
-sudo cp ./power-management.service /lib/systemd/system/
+GPIO3 is connected physically to on/off button
+
+
+To avoid typing mistakes you can also copy configuration files from the repository:
+
+Clone the GitHub repo to local machine
+git clone  https://github.com/SP5GW/RF_Power_Meter.git
+
+Copy Pi configuration files using following two commands:
+scp <Your-Cloned-Dir>/sources/config/cmdline.txt powermeter@powermeter.local:/boot/firmware/
+scp <Your-Cloned-Dir>/sources/config/config.txt powermeter@powermeter.local:/boot/firmware/
+
+>>>CONFIGURING POWER MANAGEMENT SERVICE<<<
+
+Create required directory structure on Raspberry Pi within powermeter user home directory:
+mkdir ~/services
+mkdir ~/services/power-management 
+
+Copy power-management service files to Pi:
+
+scp <Your-Cloned-Dir>/sources/services/power-management/* powermeter@powermeter.local:/home/powermeter/services/power-management/
+
+Then move .service file to /lib/systemd/system directory:
+sudo mv ~/services/power-management/power-management.service /lib/systemd/system
+
+Start and enable the service so it can survive restart:
 sudo systemctl start power-management.service
 sudo systemctl status power-management.service
 sudo systemctl enable power-management.service
 
-https://www.makeuseof.com/troubleshoot-raspberry-pi-leds-solid-flashing-meaning/
+
+>>>ADDING POWER MEASUREMENT SERVICE<<<
 
 
-https://gist.github.com/emxsys/a507f3cad928e66f6410e7ac28e2990f
-
-ADDING POWER MEASUREMENT SERVICE
-
+Power measurement service is based on example provided by SB Components, which can be found here:
 https://github.com/sbcshop/Power-Monitor-HAT
+This example demonstrates how to read data from Ina219 chip.
 
-
-enable i2c interface: 
-	run sudo raspi-config command then select interfacing options >> I2C >> click on enter to enable it.
+Ina219 use i2c interface, which has to be enabled on Pi as well, this can be done using raspy-config tool:
+sudo raspi-config command then select interfacing options >> I2C >> click on enter to enable it.
 
 check that i2c is indeed enabled:
-	 sudo raspi-config nonint get_i2c
-	 	0=true (interface is enabled)
-	 sudo i2cdetect -y 1
-	 	devices with address 40,41 and 42 shall be detected if hat is correctly installed
+sudo raspi-config nonint get_i2c
+	 0=true (interface is enabled)
+sudo i2cdetect -y 1
+	 devices with address 40,41 and 42 shall be detected if hat is correctly installed
 
 install ina219 python support
-	sudo pip3 install adafruit-circuitpython-ina219 --break-system-packages
+sudo pip3 install adafruit-circuitpython-ina219 --break-system-packages
  
- clone demo repository
- 	cd /home/powermeter
-	mkdir ./pi-hat-adc
- 	git clone https://github.com/sbcshop/Power-Monitor-HAT.git
-	cd Power-Monitor-HAT
-	cd RaspberryPi
-	python3 demo.py
-	
-go to /home/powermeter/services/measurement-loop
-sudo cp ./measurement-loop.service /lib/systemd/system/
+Create required directory structure on Raspberry Pi within powermeter user home directory:
+mkdir ~/services/measurement-loop 
+
+Copy measurement-loop service files to Pi:
+scp <Your-Cloned-Dir>/sources/services/measurement-loop/* powermeter@powermeter.local:/home/powermeter/services/measurement-loop/
+
+Note that file powermeas.value copied to Pi is can be omitted since it will be overwritten/created as soon as measurement loop
+service reads first data from Ina219 chip.
+
+Then move .service file to /lib/systemd/system directory:
+sudo mv ~/services/measurement-loop/measurement-loop.service /lib/systemd/system
+
+Start and enable the service so it can survive restart:
 sudo systemctl start measurement-loop.service
 sudo systemctl status measurement-loop.service
 sudo systemctl enable measurement-loop.service
 
 
-ADDING WELCOME BANER
+>>>ADDING DISPLAY SERVICE<<<
 
-modify /etc/motd file. Its contents are displayed right after successful authentification and before shell.
+Required drivers and up to date installation procedure can be found on Adafruit web:
+https://learn.adafruit.com/adafruit-mini-pitft-135x240-color-tft-add-on-for-raspberry-pi?view=all
 
-at the end of motd file add following line
-For more info type cat unit-info ...
+After ssh to Raspberry Pi:
+cd ~
+sudo pip3 install --upgrade adafruit-python-shell click
+sudo apt-get install -y git
+git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
+cd Raspberry-Pi-Installer-Scripts
+sudo -E env PATH=$PATH python3 adafruit-pitft.py --display=st7789_240x240 --rotation=180 --install-type=console
 
-in home directory create unit-info file with the following content:
+<<<at the end of install process you will be asked to reboot, after reboot is complete you will see console prompt on the display>>>
+
+Installation of Blinka libraries:
+https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi
+
+wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+sudo python3 raspi-blinka.py
+
+Enable spi interface required to communicate with display controller
+sudo raspi-config command then select interfacing options >> spi >> click on enter to enable it.
+
+test spio interface
+ls /dev/spi*
+you shall get:
+/dev/spidev0.0  /dev/spidev0.1
+
+Install also python rib-display driver, fonts, pil and numpy modules
+sudo pip3 install adafruit-circuitpython-rgb-display
+sudo apt-get install fonts-dejavu
+sudo apt-get install python3-pil
+sudo apt-get install python3-numpy
+
+In order for display to function properly, go to /boot/firmware/config.txt and comment out section on the 
+bottom of the file added by AdaFruit installer scripts
+
+Create required directory structure on Raspberry Pi within powermeter user home directory:
+mkdir ~/services/display-handler 
+
+Copy display-handler service files to Pi:
+scp <Your-Cloned-Dir>/sources/services/display-handler/* powermeter@powermeter.local:/home/powermeter/services/display-handler/
+
+Note that file pbandselector.value copied to Pi can be omitted since it will be overwritten/created as soon as display handler
+starts running.
+If scp option -r is not used then test directory will not be copied to Pi. This directory is not mandatory since it only include
+test programs used during system development.
+
+Then move .service file to /lib/systemd/system directory:
+sudo mv ~/services/display-handler/display-handler.service /lib/systemd/system
+
+Start and enable the service so it can survive restart:
+sudo systemctl start display-handler.service
+sudo systemctl status display-handler.service
+sudo systemctl enable display-handler.service
 
 
-##################################################################################################
-#     RF Power Meter calibrated for HF Ham bands.                                                #
-#     Main HW components include:                                                                #
-#         RF Power sensor:          AD8307                                                       #
-#         ADC Converter:            Ina219   (Pi Hat - SBComponents)                             #
-#         TFT Display:              ST7789VW (Mini PiTFT 1,3'' 240x240px - Adafruit 4484)        #
-#         Halt/Wake-up Controller:  see project documentation for details                        #
-#                                                                                                #
-#     Control software has been broken into three systemd services written in Python:            #
-#         power-management.service - controlling Pi halt/wake-up process                         #
-#         measurement-loop.service - measuring inpu power levels                                 #
-#         display-handler.service - controlling TFT display used for measurement presentation    #
-#                                                                                                #
-#     For more details see: https://github.com/sp5gw/RF_Power_Meter                              #
-#                                                                                                #   
-#                                                            May - June 2024, SP5GW              #
-#                                                                                                #
-##################################################################################################
-
-alternative 
+>>>ADDING WELCOME BANER<<<
 
 backup original motd file
 sudo cp /etc/motd /etc/motd.old
 
-copy below text into /etc/motd file 
+copy below text into /etc/motd file:
+
 The programs included with the Debian GNU/Linux system are free software;
 the exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
@@ -160,53 +224,10 @@ permitted by applicable law.
 #########################################################################
 
 
-ADDING DISPLAY SERVICE
 
-Installation of necessary drivers (outside virtual environment)
-https://learn.adafruit.com/adafruit-mini-pitft-135x240-color-tft-add-on-for-raspberry-pi?view=all
+>>> Additional Info <<<
 
-
-cd ~
-sudo pip3 install --upgrade adafruit-python-shell click
-sudo apt-get install -y git
-git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
-cd Raspberry-Pi-Installer-Scripts
-sudo -E env PATH=$PATH python3 adafruit-pitft.py --display=st7789_240x240 --rotation=180 --install-type=console
-
-<<<at the end of install process you will be asked to reboot, after reboot is complete you will see console promt on the display>>>
-
-Installation of Blinka libraries:
-https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi
-
-wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
-sudo python3 raspi-blinka.py
-
-
-test i2c and spio
-ls /dev/i2c* /dev/spi*
-you shall get:
-/dev/i2c-1  /dev/spidev0.0  /dev/spidev0.1
-
-sudo pip3 install adafruit-circuitpython-rgb-display
-sudo apt-get install fonts-dejavu
-sudo apt-get install python3-pil
-sudo apt-get install python3-numpy
-
-
-go to /home/powermeter/services/display-handler
-sudo cp ./display-handler.service /lib/systemd/system/
-sudo systemctl start display-handler.service
-sudo systemctl status display-handler.service
-sudo systemctl enable display-handler.service
-
-
-
-setting up act_led 
-
-in config.txt file:
-
-
-then in the code:
+Controlling ACT_LED from cli/code:
 
 to turn act_led on:
 echo 1 | sudo tee /sys/class/leds/ACT/brightness
@@ -221,26 +242,11 @@ echo cpu0 | sudo tee /sys/class/leds/ACT/trigger
 echo mmc0 | sudo tee /sys/class/leds/ACT/trigger
 echo actpwr | sudo tee /sys/class/leds/ACT/trigger
 
+Useful file transfer commands:
+Transfer directories from pi to pc (command run from Pi)
+scp -r /home/powermeter/services <PC_IP>:<TARGET_DIR>
 
+Transfer directories from pc to pi (command run from PC)
+scp -r <SOURCE_DIR> powermeter@powermeter.local:<TARGET_DIR>
 
-Bazooka
-https://0x9900.com/building-a-double-bazooka-antenna/
-https://www.kapstadt.de/DF1KW-ZS1AI/build-double-bazooka.pdf
-https://k7mem.com/Ant_Freq_Wavelength.html
-
-
-net
-https://the247dxnet.home.blog
-KE0SRL
-247DXnet. (14.247 at 2000Z)
-V31EC
-https://netfinder.radio/nets/view/14-247-dx-net
-
-
-
-
-scp -r /home/powermeter/services andrzejmazur@macbook-pro-apple.home:/Users/andrzejmazur
-scp -r /home/powermeter/unit-info andrzejmazur@macbook-pro-apple.home:/Users/andrzejmazur
-
-scp -r /Users/andrzejmazur/Documents/RF_Power_Meter/sources/custom_motd powermeter@powermeter.local:/home/powermeter/
-scp /Users/andrzejmazur/Documents/RF_Power_Meter/sources/custom_motd/motd powermeter@powermeter.local:/home/powermeter/
+For simple file transfer omit option -r
