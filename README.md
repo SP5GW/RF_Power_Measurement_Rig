@@ -157,7 +157,7 @@ Power Management service utilise the following Python mondules:
 
 ## Power Meter - Software Configuration
 
-A detailed description of the power meter software configuration can be found in [11] – plikpowermeter_pi_config.txt. A brief description of this procedure is presented below.
+A detailed description of the power meter software configuration can be found in [11] – [plikpowermeter_pi_config.txt](./plikpowermeter_pi_config.txt). A brief description of this procedure is presented below.
 
 A 32-bit version of Debian Bookworm was used as the base system image. Basic configuration changes such as user account definition (powermeter) and wifi configuration were made from the Raspberry Pi Imager tool.
 
@@ -175,7 +175,6 @@ To communicate with the TFT  ST7789 controller, the Adafruit driver (adafruit-ci
 Basic information about the power meter has been placed in the /etc/motd file, the content of which is displayed automatically after logging in to the power meter platform with the ssh command.
 
 The power meter software also has the ability to log basic information about its status using the journal system service.
-
 
 ## Calibration Procedure
 
