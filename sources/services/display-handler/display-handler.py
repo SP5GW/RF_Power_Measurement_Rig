@@ -18,13 +18,6 @@
 #                                                                               #
 #################################################################################
 
-
-#
-# sudo pip install is a must so package is available globally
-# sudo pip install systemd-python --break-system-packages
-#
-
-
 import sys
 import time
 import subprocess
