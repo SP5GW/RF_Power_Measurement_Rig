@@ -7,7 +7,7 @@
 
 ## Introduction
 
-The main objective of this project was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
+The main objective of this project was to utilize capabilities provided by Raspberry Pi Zero platform and its extensive HAT (hardware attached on top) ecosystem to modernize inital RF power meter design published by Wes Hayward W7ZOI and Bob Larkin W7PUA in June 2001 QST Magazine [1]. Similar work has been done in the past by Roger Hayward, KA7EXM [2], Reinhardt Weber, DC5ZM [3] and most recetly by Bartosz Krajnik [10] and Mirek Sadowski SP5GNI [4], but all earlier modernizations were based on either PIC microcontrollers or Arduino Nano platform leaving Raspberry Pi gang empty handed.
 
 The core component of all power meters mentioned above is Analog Devices AD83xx logarithmic amplifier. which converts the power level of measured signal to a voltage.
 AD83xx log amp transfer function describing relation between input power level in dBms and coresponding output voltage in Volts is highly linear and can be expressed as 
@@ -20,12 +20,18 @@ where $a$ and $b$ are respectively linear curve slope and intercept coeffiients 
 <img src="./img/Transfer_Function.png" width="500" height="500"/>
 </p>
  
+## Solution Architecture - key hardware modules
+
+### Power sensor module based on AD8307 amplifier
+
 AD8307 [6] used in this implementation, accepts input signal frequencies from DC to 500 MHz and input signal levels from -95dBm to +17dBm. 
 Readily available AD8307 detector board purchased at Amazon is used for this project (see below)
 
 <p align="center">
 <img src="./img/AD2307_board.jpg" width="200" height="200"/>
 </p>
+
+### RF Tap / Attenuator
 
 Since presented device is intended to be used to measure output power of the typical ham radio transceivers, the input signal level accepted by the power meter must be  extended to 100 Watts or 50 dBms. This is done by the use of -40dB RF Tap/Attenuator (see below). 
 
@@ -34,7 +40,7 @@ Since presented device is intended to be used to measure output power of the typ
 <img src="./img/RF_Tap_InternalsWithCap.jpg" width="400" height="300"/>
 </p> 
 
-Resistors R1a, R1b and R1c shall be 500mW rated. R2 can be 125mW rated. Please note that if you do not terminate RF path with 50ohm dummy load or antenna, power (Prms) dissipated on one of R1 resistors goes up to 1.3W!
+Resistors R1a, R1b and R1c shall be 500mW rated. R2 can be 125mW rated. Please note that if you do not terminate RF path with 50ohm dummy load or antenna, the average power dissipated on one of R1 resistors goes up to 1.3W, which may cause its permanent damage!
 
 To minimize attenuation increase for frequencies above 144MHz the capacitor made of wire connected parallel to R1a shall be added (orange wire on the picture above - not shown on the circuit diagram).  
 
@@ -44,6 +50,8 @@ RF Tap VSWR and Attenuation curves are shown below:
 <img src="./img/RF_Tap_VSWR_RF_Input_RF_Tap_withCap_50ohmTerm.png" width="400" height="200"/>
 <img src="./img/RF_Tap_S21_RF_Input_withCap_50ohmTerm.png" width="400" height="300"/>
 </p> 
+
+### ADC Module based on Ina219
 
 Power Monitor HAT based on Texas Instruments Ina219 chips [7] and manufactured by SB Components [8] is used to perform analog to digital conversion of the AD8307 output signal (see below).
 
@@ -55,6 +63,8 @@ This particular HAT offers four 12-bit ADC channels, which can be handy if SWR m
 
 AD83xx output voltage level, decreases with the frequency of measured signal even though input signal power level is kept constant. This effect can be compensated with simple two point calibration procedure [5] performed separately for each ham band. Calculated coeficient pairs are then incorporated into Python measurement script executing on Pi Zero. Band selection is made by use of up/down buttons on meters front pannel.
 
+### Display Module
+
 To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display HAT [9] from AdaFruit is used (see below). 
 
 <p align="center">
@@ -62,6 +72,8 @@ To present measurement results Mini PiTFT 1,3'' 240x240px ST7780 based display H
 </p> 
 
 Display module is controlled by Pi Zero using SPI bus. PiTFT HAT is also equipped with two tact switches, which are used in this project as Up/Down band selectors.
+
+### Dummy Load Module
 
 During power measurements antenna is replaced by dummy load based on inductance-less RFP-250 resistor manufactured by Anaren (or similar such as RFR 50-250).
 To allow for sufficient heat disipation resistor has been enclosed in aluminium Hammond box (model: 1590LLB) attached to heat sink (see below).
@@ -77,6 +89,8 @@ Key characteristics of presented dummy load are shown below:
 <img src="./img/Dummy_Load_Smith_Chart.png" width="400" height="300"/>
 </p> 
 
+### RF Power Meter
+
 AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (Ina219 ADC) and PiTFT HAT (Display and Band Selector Buttons) are enclosed into separate Hammond Box chassie and form a digital power meter, which is the central part of presented power measurement rig (see below).
 
 <p align="center">
@@ -84,7 +98,7 @@ AD8307 module together with Pi Zero Platform integrated with Power Monitor HAT (
 <img src="./img/Power_Meter_Display_Mounting.jpg" width="400" height="300"/>
 </p> 
 
-Schematics of the full setup can be found below:
+### RF Power Measurement Rig - Electrical Diagram
 
 <p align="center">
 <img src="./img/RigSchematics.jpg" width="500" height="500"/>
@@ -191,6 +205,11 @@ The operation of the setup is very easy assuming the rig has been already calibr
 
 For the novice user it might be surprising that when transceiver is in LSB/USB mode and PTT button is pressed, there is practically no signal present at the output of the transceiver unless one starts speaking or better whistling. To obtain results, which can be interpreted the transceiver shall be set into CW mode. As soon as the straight key is pressed the power of clean carrier sine wave dispating on dummy laod can be measured. 
 
+## Acknowledgments
+
+Special thanks to Zygmunt (Zygi) Szumski, SP5ELA for lots of relevant technical comments and editorial support!
+
+Otwock, August 2024
 
 
 ## References
@@ -212,3 +231,7 @@ For the novice user it might be surprising that when transceiver is in LSB/USB m
 [8] Power Monitor Hat Product Page, SB Components - https://shop.sb-components.co.uk/blogs/posts/how-to-use-power-monitor-hat
 
 [9] Mini PiTFT 1,3'' Display Product Page, Adafruit - https://www.adafruit.com/product/4484>
+
+[10] Warsztatowy miernik mocy w.cz., Bartosz Krajnik SP2Z, Zjazd Techniczny Krótkofalowców, Burzenin 2018 (in Polish)
+
+[11] RF Power Meter, Andrzej Mazur SP5GW, 
