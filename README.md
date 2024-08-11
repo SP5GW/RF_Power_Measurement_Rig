@@ -234,4 +234,4 @@ Otwock, August 2024
 
 [10] Warsztatowy miernik mocy w.cz., Bartosz Krajnik SP2Z, Zjazd Techniczny Krótkofalowców, Burzenin 2018 (in Polish)
 
-[11] RF Power Meter, Andrzej Mazur SP5GW, 
+[11] RF Power Meter, Andrzej Mazur SP5GW, https://github.com/SP5GW/RF_Power_Measurement_Rig
