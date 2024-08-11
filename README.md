@@ -157,7 +157,7 @@ Power Management service utilise the following Python mondules:
 
 ## Power Meter - Software Configuration
 
-A detailed description of the power meter software configuration can be found in [11] – [./powermeter_pi_config.txt](./powermeter_pi_config.txt). A brief description of this procedure is presented below.
+A detailed description of the power meter software configuration can be found in [11] – [powermeter_pi_config.txt](./powermeter_pi_config.txt). A brief description of this procedure is presented below.
 
 A 32-bit version of Debian Bookworm was used as the base system image. Basic configuration changes such as user account definition (powermeter) and wifi configuration were made from the Raspberry Pi Imager tool.
 
