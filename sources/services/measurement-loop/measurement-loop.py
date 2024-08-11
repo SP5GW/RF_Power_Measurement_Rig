@@ -3,11 +3,13 @@
 
 ####################################################################################
 #                                                                                  #
-# Periodic measurement of output voltage from AD8703 power sensor using Ina219 ADC #
-# Measured voltage is then converted to power in dBm using linear approximation    #
-# Formula calculating power value based on measured voltage is given per band      #
-# Attenuation of measured power value by -40dB is assumed by the routine           #
-# Calculated power value in dBm is stored in file ./powermeas.value                #
+# Periodic measurement of output voltage from AD8703 logarythmic amplifier,        #
+# using Ina219 ADC. Measured voltage is converted to power in dBm using linear     #
+# approximation.Formula calculating power value based on measured voltage is given #
+# per band. Attenuation of measured power value by -40dB is assumed by the         #
+# routine. Calculated power value in dBm is stored in file ./powermeas.value       #
+# Information aboout current measurement band is fetched from                      #
+# ../display-handler/bandselector.value file.                                      #
 #                                                                                  #
 #                                     may 2024, sp5gw, andrzej@mazur.info          #
 #                                                                                  #
