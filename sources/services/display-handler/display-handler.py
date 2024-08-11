@@ -1,6 +1,30 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
 # -*- coding: utf-8 -*-
+
+#################################################################################
+#                                                                               #
+# PowerMeter service handling TFT display and band selector buttons.            #
+#                                                                               #
+# Band selector buttons status is continously checked and currently selected    #
+# band is calculated. Band selection is saved in file ./bandselector.value      #
+# and later used by measurement loop service.                                   #
+# Latest measured power value in dBm and Watts is continously fetched from      #
+# file: ../measurement-loop/powermeas.value.                                    #
+#                                                                               #
+# In current version this program is not instrumented with journal logging      #
+#                                                                               #
+#                                       may 2024, sp5gw, andrzej@mazur.info     #
+#                                                                               #
+#################################################################################
+
+
+#
+# sudo pip install is a must so package is available globally
+# sudo pip install systemd-python --break-system-packages
+#
+
+
 import sys
 import time
 import subprocess
@@ -29,7 +53,7 @@ def displayBacklight(status):
         backlight.switch_to_output()
         backlight.value = status
 
-# Configure power Up and Down buttons (band selector)
+# Configure Up and Down buttons (band selector)
 buttonUp = digitalio.DigitalInOut(board.D23)
 buttonDown = digitalio.DigitalInOut(board.D24)
 buttonUp.switch_to_input()
@@ -111,7 +135,7 @@ try:
                         else:
                                 bandSelectorIdx -= 1
                 #Store band in the file
-                with open("bandselector.value", "w") as file:
+                with open("./bandselector.value", "w") as file:
                         # Write a line of text to the file
                         file.write("bandSelectorIdx:" + str(bandSelectorIdx) + "\n")
                         file.write("bandSelector:" + str(bandSelector[bandSelectorIdx]) + "m" + "\n")
